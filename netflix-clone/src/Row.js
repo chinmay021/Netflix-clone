@@ -27,7 +27,7 @@ function Row({ title, fetchUrl, isLargeRow }) {
         width: '100%',
         playerVars: {
             // https://developers.google.com/youtube/player_parameters
-            autoplay: 1,
+            autoplay: 0,
         },
     };
 
@@ -36,9 +36,10 @@ function Row({ title, fetchUrl, isLargeRow }) {
             setTrailerUrl('');
         }
         else {
-            // console.log(movie?.title || movie?.name || movie?.original_name);
-            movieTrailer(movie?.title || movie?.name || movie?.original_name)
+            console.log(movie?.title, movie?.name, movie?.original_name);
+            movieTrailer(movie?.name || movie?.title || movie?.original_name)
                 .then((url) => {
+                    // console.log(url)
                     const urlParams = new URLSearchParams(new URL(url).search);
                     setTrailerUrl(urlParams.get('v'));
 
